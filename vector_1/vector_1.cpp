@@ -28,7 +28,7 @@ int main(void)
         4, 9, 16,   // Square
         5, 12, 22   // Pentagonal
     };
-    vector<int> fibonacci(elem_seq, elem_seq+3);
+    vector<int> fibonacci(elem_seq, elem_seq+3);//用列表进行初始化 0-2 不包含3 
     vector<int> Lucas(elem_seq+3, elem_seq+6);
     vector<int> Pell(elem_seq+6, elem_seq+9);
     vector<int> Triangular(elem_seq+9, elem_seq+12);
@@ -43,11 +43,14 @@ int main(void)
         "Triangular",
         "Square",
         "Pentagonal"
-    };
+    };//数列名的一个数组 
+    
+    //分别存放每个子数列的首地址 
     vector<int> * seq_addrs[max_seq] = {
         &fibonacci, &Lucas, &Pell,
         &Triangular, &Square, &Pentagonal
     };
+
 
     vector<int> *current_vec = 0;
     int seq_index;
@@ -61,12 +64,13 @@ int main(void)
         std::cout << "The first 2 elements of the sequence are: "
                     << (*current_vec)[0] << ", " <<  (*current_vec)[1] << endl;
         std::cout << "What is the next element?";
+        //为了第一次循环能正常启动 
         int tries_cnt = 0;
         next_seq = true;
         go_for_it = true;
         got_it = false;
         // 用户所猜不正确 && 用户想要再猜一次
-        while(!got_it && go_for_it && (++tries_cnt <= max_tries))
+        while(!got_it && go_for_it && (++tries_cnt <= max_tries))//tries_cnt=1 
         {
             std::cin >> user_guess;
             ++num_tries;
@@ -77,7 +81,7 @@ int main(void)
                 std::cout << "Very good, yes, " <<   (*current_vec)[2]
                             << " is the next element in the "
                             << seq_names[seq_index] << "  sequence." << endl;
-                got_it = true;
+                got_it = true;//猜对了 就不循环了 
             }else{
             // 如果答案错误
                 switch (tries_cnt)
@@ -97,7 +101,7 @@ int main(void)
                 }
 
                 std::cout << "do you want to continue?(y/n):" << endl;
-                std::cin >> user_rsp;
+                std::cin >> user_rsp;//用户响应 
                 if(user_rsp == 'N' || user_rsp == 'n')
                     go_for_it = false;
             } 
