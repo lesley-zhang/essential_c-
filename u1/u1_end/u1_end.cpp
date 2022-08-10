@@ -147,7 +147,7 @@ int main(){
             next_seq = false;
     }   // 外层while结束
     
-    ofstream outfile("seq_data.txt", ios_base::app);//读入文件 
+    ofstream outfile("seq_data.txt", ios_base::app);//写入文件 
     if(!outfile)
         cerr << "Oops, unable to open file!" << endl;
     else
